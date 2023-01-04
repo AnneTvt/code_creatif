@@ -141,3 +141,15 @@ function PhraseFinale(){
     color = "#A60076";
     text(choisi, x=xf, y=yf);
 }
+function Transition (){
+    spread1() {
+        x2 = random(windowWidth)
+        y2 = random(windowHeight)
+    }
+
+    update2() {
+        //se déplace vers la cible de 10% à chaque fois
+        x = lerp(x, x2, 0.1)
+        y = lerp(y, y2, 0.1)
+    }
+}
