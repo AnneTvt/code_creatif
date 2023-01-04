@@ -37,7 +37,7 @@ function setup() {
         const word = new Word(wordStr, x, y, i)
         words.push(word)
   
-      x = x + wordStrWidth + textWidth(' ') // ajouter à x la largeur du mot et l'espace des caractères.
+      x = x + wordStrWidth + textWidth(',') // ajouter à x la largeur du mot et l'espace des caractères.
         // regarge si le mot suivant rentre dans le cadre, sinon saut à la ligne
         const nextWordStrWidth = textWidth(wordsStr[i+1]) || 0
         if (x > width - nextWordStrWidth) {
