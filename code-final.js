@@ -1,17 +1,18 @@
-//définition des fonctions
-//tableau des textes
+//tableau des mots possibles de la phrase
 let sujet = ["La cadre","Pauline","Le petit garçon","Ma pantoufle","Le sapin de Noël","Le fauteuil","L'ornithorynque","Un tapis","Mon orteil","Le carrelage","Le pigeon","Son transat","Un avion en papier","L'ourlet de mon jean","Ma carotide interne","Son lavabo","Louis Grandjean","Francfort","Le transpalette","Ma soeur"];
 let verbe = ["s'enfuit","bougonne","épluchait","filme","s'agrandissait","tourne","roule","s'enroule","dirigea","découvrit","dormi","poussa","vole","juge","se cachait","tapa","flamba","s'allume","fume","a esquivé"];
 let complement = ["dans la forêt","sur son radeau","au magasin","rapidement","avec sa plante","sa sœur","une pomme","un carambar","dans son lit","avec amour","doucement","avec une orange","lors du réveillon","devant la mer","en voyage","au jardin","à la cave","avec grand-père","à l'Ecole de Design","dans une boîte","chez sa mère"];
 
+//tous les mots à afficher sur le canva
 let allwords = "La cadre,Pauline,Le petit garçon,Ma pantoufle,Le sapin de Noël,Le fauteuil,L'ornithorynque,Un tapis,Mon orteil,Le carrelage,Le pigeon,Son transat,Un avion en papier,L'ourlet de mon jean,Ma carotide interne,Son lavabo,Louis Grandjean,Francfort,Le transpalette,Ma soeur,s'enfuit,bougonne,épluchait,filme,s'agrandissait,tourne,roule,s'enroule,dirigea,découvrit,dormi,poussa,vole,juge,se cachait,tapa,flamba,s'allume,fume,a esquivé,dans la forêt,sur son radeau,au magasin,rapidement,avec sa plante,sa sœur,une pomme,un carambar,dans son lit,avec amour,doucement,avec une prune,lors du réveillon,devant la mer,en voyage,au jardin,à la cave,avec grand-père,à l'Ecole de Design,dans une boîte,chez sa mère";
-// conserve tous les mots
+
+//conserve tous les mots avec leur emplacement
 const words = [] 
 
 //positions initiales du texte
 let x = [];
 let y = [];
-//deuxième position du texte
+//deuxièmes positions du texte
 let x2 = [];
 let y2 = [];
 //positions finales des mots de la phrase
@@ -21,7 +22,7 @@ let yf = [200,300,400];
 //liste (vide initialement) des termes
 let choisi = [];
 
-//changer les options de texte
+//changer les couleurs du texte
 let color = "white";
 let color1 = "white";
 
@@ -30,28 +31,28 @@ function setup() {
     textFont("Sans-serif");
     textSize(40);
     const wordsStr = allwords.split(',')
-    // suit la position du mot
+    // x1 et y1 suivent la position du mot
     let x1 = 20
     let y1 = 60
     fill(255)
-    // sur répète pour chaque mot
+    // on définit la chaine de caractères et l'emplacement de chaque mot
     for (let i = 0; i < wordsStr.length; i++) {
         const wordStr = wordsStr[i] // mot actuel
         const wordStrWidth = textWidth(wordStr) // largeur du mot actuel
-        const word = new Word(wordStr, x1, y1, i)
+        const word = new Word(wordStr, x1, y1, i) // crée le mot avec la class Word
         words.push(word)
   
-      x1 = x1 + wordStrWidth + textWidth(',') // ajouter à x la largeur du mot et l'espace des caractères.
-        // regarge si le mot suivant rentre dans le cadre, sinon saut à la ligne
+      x1 = x1 + wordStrWidth + textWidth(',') // on décale x de la taille du mot et l'espace des caractères
+        // regarde si le mot suivant rentre dans le cadre, sinon saut à la ligne
         const nextWordStrWidth = textWidth(wordsStr[i+1]) || 0
         if (x1 > width - nextWordStrWidth) {
-            y1 += 40 
-            x1 = 20 
+            y1 += 40
+            x1 = 20
         }
     }
     for (let i = 0; i < words.length; i++) {
         const word = words[i] // recherche du mot
-        word.spread()
+        word.spread() // éparpille les mots sur le canva
     }
     
     //remplir la tableau de positions aléatoirement + choisir le terme choisi
@@ -98,16 +99,17 @@ function displayWords(){
 
 //création de mots
 class Word { 
-        constructor(word, x1, y1, idx) { //requiert le mot (la string), sa position en xy et 
+        constructor(word, x1, y1, idx) { //requiert le mot (la string), sa position en xy
             this.word = word
             this.x = x1
             this.y = y1
-            //la position de la cible est la même que la position actuelle au départ
+            // la position de la cible est la même que la position actuelle au départ
             this.tx = this.x
             this.ty = this.y
             this.idx = idx
         }
-        spread() {
+        spread() { 
+            // place le mot à un lieu aléatoire
             this.tx = random(windowWidth)
             this.ty = random(windowHeight)
         }
@@ -117,6 +119,7 @@ class Word {
             this.y = lerp(this.y, this.ty, 0.1)
         }
         display() {
+            // affiche le mot de couleur color1, sans contours et à l'emplacement de son x et y
             fill(color1)
             noStroke()
             text(this.word, this.x, this.y)
@@ -124,7 +127,7 @@ class Word {
 }
 
 function Disappear(){
-  color1 = "black";
+    color1 = "black";
 }
 
 //fonction pour choisir la couleur du texte et modifier sa position
