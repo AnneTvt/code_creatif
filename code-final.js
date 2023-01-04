@@ -65,6 +65,7 @@ function setup() {
 
     //afficher la fonction Disappear après 3sec = le texte dispparît
     setTimeout (Disappear, 3000);
+    setTimeout (Transition, 3500)
     //afficher la fonction Etape2 après 3,2sec = le texte change de place et de couleur
     setTimeout(Etape2, 4000);
     //afficher la fonction PhraseFinale après 4,5sec = le texte change de couleur et se met dans l'ordre
