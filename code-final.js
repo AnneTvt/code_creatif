@@ -96,14 +96,9 @@ function displayWords(){
     }
 }
 
-<<<<<<< HEAD
 //création de mots
 class Word { 
         constructor(word, x1, y1, idx) { //requiert le mot (la string), sa position en xy et 
-=======
-class Word {
-        constructor(word, x1, y1, idx) {
->>>>>>> 8d9436a1cc36f1547c2aa10a534b79139f860c69
             this.word = word
             this.x = x1
             this.y = y1
