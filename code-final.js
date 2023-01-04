@@ -61,19 +61,19 @@ function setup() {
         x2.push(random(0, windowWidth));
         y2.push(random(0, windowHeight));
     }
-    choisi.push(random(verbe), random(complement));
+    choisi.push(random(sujet), random(verbe), random(complement));
 }
 
 function draw() {
     background("black");
-  //afficher la fonction texte = tous les mots s'affichent en blanc aléatoirement
+    //afficher la fonction texte = tous les mots s'affichent en blanc aléatoirement
     displayWords();
+    //afficher la fonction Disappear après 3sec = le texte dispparît
+    setTimeout (Disappear, 3000);
     //afficher la fonction texte = le texte s'affiche en blanc à un endroit aléatoire
     displayText();
-  //afficher la fonction Disappear après 3sec = le texte dispparît
-    setTimeout (Disappear, 3000);
     //afficher la fonction Etape2 après 3,2sec = le texte change de place et de couleur
-    setTimeout(Etape2, 3200);
+    setTimeout(Etape2, 3500);
     //afficher la fonction PhraseFinale après 4,5sec = le texte change de couleur et se met dans l'ordre
     setTimeout(PhraseFinale, 4500);
     }
