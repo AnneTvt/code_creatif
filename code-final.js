@@ -129,7 +129,6 @@ function Disappear(){
   color1 = "black";
 }
 
-
 //fonction pour choisir la couleur du texte et modifier sa position
 function Etape2(){
     color = "#00A676";
