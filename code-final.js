@@ -1,12 +1,11 @@
-//définition des fonctions
-//tableau des textes
+//tableau de chaque mot de la phrase
 let sujet = ["La cadre","Pauline","Le petit garçon","Ma pantoufle","Le sapin de Noël","Le fauteuil","L'ornithorinque","Un tapis","Mon orteil","Le carrelage","Le pigeon","Son transat","Un avion en papier","L'ourlet de mon jean","Ma carotide interne","Son lavabo","Louis Grandjean","Francfort","Le transpalette","Ma soeur"];
 let verbe = ["s'enfuit","bougonne","épluchait","filme","s'agrandissait","tourne","roule","s'enroule","dirigea","découvrit","dormi","poussa","vole","juge","se cachait","tapa","flamba","s'allume","fume","a esquivé"];
 let complement = ["dans la forêt","sur son radeau","au magasin","rapidement","avec sa plante","sa sœur","une pomme","un carambar","dans son lit","avec amour","doucement","avec une orange","lors du réveillon","devant la mer","en voyage","au jardin","à la cave","avec grand-père","à l'Ecole de Design","dans une boîte"];
 
-//bonjour
-
+// liste de tous les mots à afficher sur le canva
 let allwords = "La cadre,Pauline,Le petit garçon,Ma pantoufle,Le sapin de Noël,Le fauteuil,L'ornithorinque,Un tapis,Mon orteil,Le carrelage,Le pigeon,Son transat,Un avion en papier,L'ourlet de mon jean,Ma carotide interne,Son lavabo,Louis Grandjean,Francfort,Le transpalette,Ma soeur,s'enfuit,bougonne,épluchait,filme,s'agrandissait,tourne,roule,s'enroule,dirigea,découvrit,dormi,poussa,vole,juge,se cachait,tapa,flamba,s'allume,fume,a esquivé,dans la forêt,sur son radeau,au magasin,rapidement,avec sa plante,sa sœur,une pomme,un carambar,dans son lit,avec amour,doucement,avec une prune,lors du réveillon,devant la mer,en voyage,au jardin,à la cave,avec grand-père,à l'Ecole de Design,dans une boîte";
+
 // conserve tous les mots
 const words = [] 
 
@@ -23,7 +22,7 @@ let yf = [200,300,400];
 //liste (vide initialement) des termes
 let choisi = [];
 
-//changer les options de texte
+//changer les couleurs du texte
 let color = "white";
 let color1 = "white";
 
@@ -31,20 +30,21 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     textFont("Sans-serif");
     textSize(40);
-    const wordsStr = allwords.split(',')
-    // suit la position du mot
+
+    const wordsStr = allwords.split(',') //on récupère chaque mot individuellement
+    // position du premier mot
     let x1 = 20
     let y1 = 60
     fill(255)
-    // sur répète pour chaque mot
+    // on répète pour chaque mot
     for (let i = 0; i < wordsStr.length; i++) {
-        const wordStr = wordsStr[i] // mot actuel
+        const wordStr = wordsStr[i] // on crée une constance qui contient le mot actuel de la boucle
         const wordStrWidth = textWidth(wordStr) // largeur du mot actuel
-        const word = new Word(wordStr, x1, y1, i)
+        const word = new Word(wordStr, x1, y1, i) //?? 
         words.push(word)
   
-      x1 = x1 + wordStrWidth + textWidth(',') // ajouter à x la largeur du mot et l'espace des caractères.
-        // regarge si le mot suivant rentre dans le cadre, sinon saut à la ligne
+      x1 = x1 + wordStrWidth + textWidth(',') // ajouter à x la largeur du mot et l'espace des caractères
+        // regarde si le mot suivant rentre dans le cadre, sinon
         const nextWordStrWidth = textWidth(wordsStr[i+1]) || 0
         if (x1 > width - nextWordStrWidth) {
             y1 += 40 
@@ -98,8 +98,9 @@ function displayWords(){
 
 }
 
-class Word {
-        constructor(word, x1, y1, idx) {
+//création de mots
+class Word { 
+        constructor(word, x1, y1, idx) { //requiert le mot, sa position en xy et 
             this.word = word
             this.x = x1
             this.y = y1
