@@ -95,12 +95,11 @@ function displayWords(){
         word.update()
         word.display()
     }
-
 }
 
 //création de mots
 class Word { 
-        constructor(word, x1, y1, idx) { //requiert le mot, sa position en xy et 
+        constructor(word, x1, y1, idx) { //requiert le mot (la string), sa position en xy et 
             this.word = word
             this.x = x1
             this.y = y1
