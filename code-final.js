@@ -100,7 +100,7 @@ function displayWords(){
     }
 }
 
-//création de mots
+//création de mots, code récupéré et adapté à partir de https://erraticgenerator.com/blog/animate-word-by-word-in-p5js/#:~:text=Animate%20Word%20by%20Word%20in%20p5.js%201%20Display,Each%20Word%20...%204%20Bring%20Them%20Back%20
 class Word { 
         constructor(word, x1, y1, idx) { //requiert le mot (la string), sa position en xy
             this.word = word
