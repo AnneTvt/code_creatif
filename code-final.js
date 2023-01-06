@@ -1,10 +1,10 @@
 //tableau des mots possibles de la phrase
-let sujet = ["La cadre","Pauline","Le petit garçon","Ma pantoufle","Le sapin de Noël","Le fauteuil","L'ornithorynque","Un tapis","Mon orteil","Le carrelage","Le pigeon","Son transat","Un avion en papier","L'ourlet de mon jean","Ma carotide interne","Son lavabo","Louis Grandjean","Francfort","Le transpalette","Ma soeur"];
+let sujet = ["La cadre","Pauline","Le petit garçon","Ma pantoufle","Le sapin de Noël","Le fauteuil","L'ornithorynque","Un tapis","Mon orteil","Le carrelage","Le pigeon","Son transat","Un avion en papier","L'ourlet de mon jean","Ma carotide interne","Son lavabo","Louis Grandjean","Francfort","Le transpalette","Ma soeur","Le chocolat"];
 let verbe = ["s'enfuit","bougonne","épluchait","filme","s'agrandissait","tourne","roule","s'enroule","dirigea","découvrit","dormi","poussa","vole","juge","se cachait","tapa","flamba","s'allume","fume","a esquivé"];
-let complement = ["dans la forêt","sur son radeau","au magasin","rapidement","avec sa plante","sa sœur","une pomme","un carambar","dans son lit","avec amour","doucement","avec une orange","lors du réveillon","devant la mer","en voyage","au jardin","à la cave","avec grand-père","à l'Ecole de Design","dans une boîte","chez sa mère"];
+let complement = ["dans la forêt","sur son radeau","au magasin","rapidement","avec sa plante","sa sœur","une pomme","un carambar","dans son lit","avec amour","doucement","avec une orange","lors du réveillon","devant la mer","en voyage","au jardin","à la cave","avec grand-père","à l'Ecole de Design","dans une boîte","chez sa mère","mes lunettes"];
 
 //tous les mots à afficher sur le canva
-let allwords = "La cadre,Pauline,Le petit garçon,Ma pantoufle,Le sapin de Noël,Le fauteuil,L'ornithorynque,Un tapis,Mon orteil,Le carrelage,Le pigeon,Son transat,Un avion en papier,L'ourlet de mon jean,Ma carotide interne,Son lavabo,Louis Grandjean,Francfort,Le transpalette,Ma soeur,s'enfuit,bougonne,épluchait,filme,s'agrandissait,tourne,roule,s'enroule,dirigea,découvrit,dormi,poussa,vole,juge,se cachait,tapa,flamba,s'allume,fume,a esquivé,dans la forêt,sur son radeau,au magasin,rapidement,avec sa plante,sa sœur,une pomme,un carambar,dans son lit,avec amour,doucement,avec une prune,lors du réveillon,devant la mer,en voyage,au jardin,à la cave,avec grand-père,à l'Ecole de Design,dans une boîte,chez sa mère";
+let allwords = "La cadre,Pauline,Le petit garçon,Ma pantoufle,Le sapin de Noël,Le fauteuil,L'ornithorynque,Un tapis,Mon orteil,Le carrelage,Le pigeon,Son transat,Un avion en papier,L'ourlet de mon jean,Ma carotide interne,Son lavabo,Louis Grandjean,Francfort,Le transpalette,Ma soeur,s'enfuit,bougonne,épluchait,filme,s'agrandissait,tourne,roule,s'enroule,dirigea,découvrit,dormi,poussa,vole,juge,se cachait,tapa,flamba,s'allume,fume,a esquivé,dans la forêt,sur son radeau,au magasin,rapidement,avec sa plante,sa sœur,une pomme,un carambar,dans son lit,avec amour,doucement,avec une prune,lors du réveillon,devant la mer,en voyage,au jardin,à la cave,avec grand-père,à l'Ecole de Design,dans une boîte,chez sa mère,le chocolat,mes lunettes";
 
 //conserve tous les mots avec leur emplacement
 const words = [] 
@@ -18,7 +18,6 @@ let y2 = [];
 //positions finales des mots de la phrase
 let xf = [200,300,400];
 let yf = [200,300,400];
-
 //liste (vide initialement) des termes
 let choisi = [];
 
@@ -28,13 +27,15 @@ let color1 = "white";
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    textFont("Sans-serif");
-    textSize(40);
+    //utiliser la police prédéfini dans le HTML
+    textFont('Poppins');
+    textSize(48);
+    //dissocier chaque mot de la phrase
     const wordsStr = allwords.split(',')
     // x1 et y1 suivent la position du mot
-    let x1 = 20
-    let y1 = 60
-    fill(255)
+    let x1 = 20;
+    let y1 = 60;
+    fill(255);
     // on définit la chaine de caractères et l'emplacement de chaque mot
     for (let i = 0; i < wordsStr.length; i++) {
         const wordStr = wordsStr[i] // mot actuel
@@ -57,19 +58,21 @@ function setup() {
     
     //remplir la tableau de positions aléatoirement + choisir le terme choisi
     for (let i=0; i<3; i++){
-        x.push(random(0, windowWidth-50));
-        y.push(random(0, windowHeight-50));
-        x2.push(random(0, windowWidth));
-        y2.push(random(0, windowHeight));
+        x.push(random(0, windowWidth-200));
+        y.push(random(100, windowHeight-300));
+        x2.push(random(100, windowWidth-300));
+        y2.push(random(100, windowHeight-200));
     }
+    //faire une phrase aléatoire
     choisi.push(random(sujet), random(verbe), random(complement));
 
-    //afficher la fonction Disappear après 3sec = le texte dispparît
+    //afficher la fonction Disappear après 3sec = le texte dispparaît
     setTimeout (Disappear, 3000);
-    //afficher la fonction Etape2 après 3,2sec = le texte change de place et de couleur
-    setTimeout(Etape2, 4000);
-    //afficher la fonction PhraseFinale après 4,5sec = le texte change de couleur et se met dans l'ordre
-    setTimeout(PhraseFinale, 5000);
+    //afficher la fonction Etape2 après 2sec = le texte change de place et de couleur
+    setTimeout(Etape2, 2000);
+    setTimeout(Etape3,3000)
+    //afficher la fonction PhraseFinale après 4sec = le texte change de couleur et se met dans l'ordre
+    setTimeout(PhraseFinale, 4000);
 }
 
 function draw() {
@@ -92,8 +95,8 @@ function displayText(){
 function displayWords(){
     for (let i = 0; i < words.length; i++) {
         const word = words[i] // recherche du mot
-        word.update()
-        word.display()
+        word.update();
+        word.display();
     }
 }
 
@@ -123,7 +126,7 @@ class Word {
             fill(color1)
             noStroke()
             text(this.word, this.x, this.y)
-        }
+        }      
 }
 
 function Disappear(){
@@ -133,11 +136,13 @@ function Disappear(){
 //fonction pour choisir la couleur du texte et modifier sa position
 function Etape2(){
     color = "#00A676";
-    text(choisi,x ,y ); 
+}
+function Etape3(){
+    translate(x=x2,y=y2);
 }
 
 //changer la couleur du texte et mettre la phrase dans l'ordre final
 function PhraseFinale(){
     color = "#A60076";
-    text(choisi, x=xf, y=yf);
+    translate(x=xf,y=yf);
 }
